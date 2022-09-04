@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    Login
+{% endblock title %}
+{% block head %}
+    {{ super() }}
+{% endblock head %}
+{% block content %}
+    <h1>Login</h1>
+    <form method="post">
+        <div class="form-group row">
+            <label for="dateTo" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-5">
+                <input class= "form-control" id="username" name="username" placeholder= "enter username">
+            </div>
+        </div>
+        <div class="form-group row">
+         <label for="dateTo" class="col-sm-2 col-form-label">Password</label>
+         <div class="col-sm-5">
+             <input type="password" class= "form-control" id="password" name="password" placeholder= "enter password">
+         </div>
+     </div>
+        <input type="submit" class="btn btn-primary" name="action" value="Login"/>
+    </form>
+{% endblock content %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>University of Minnesota</title>
+        {% endblock head %}
+    </head>
+    <body>
+        <a name="main-nav"></a>
+		<a name="main-content"></a>
+		<main>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url_for('create') }}>Create account</a>
+                    <a class="nav-link" href={{ url_for('login') }}>login</a>
+                    <a class="nav-link" href={{ url_for('vote_page') }}>vote</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+    </body>
+</html>

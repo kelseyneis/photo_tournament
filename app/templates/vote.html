@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+    Vote
+{% endblock title %}
+{% block head %}
+    {{ super() }}
+{% endblock head %}
+{% block content %}
+    <h1>Vote</h1>
+    <form method="post">
+      <a href="/vote/{{img1}}">
+         <img alt="image_1" src="{{base_url}}{{img1}}.jpg">
+      </a>
+      <a href="/vote/{{img2}}">
+         <img alt="image_2" src="{{base_url}}{{img2}}.jpg">
+      </a>
+    </form>
+{% endblock content %}
