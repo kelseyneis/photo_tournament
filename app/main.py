@@ -24,7 +24,7 @@ from fastapi_users import FastAPIUsers
 app = FastAPI()
 
 # set up css and templates
-app.mount("/app/static", StaticFiles(directory="app/static"), name="static")
+# app.mount("/app/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 app.add_middleware(

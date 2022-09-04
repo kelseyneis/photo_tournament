@@ -1,2 +1,3 @@
-# Photo Tournament Submission: A Partial Solution
+# Photo Tournament Submission
+
 
