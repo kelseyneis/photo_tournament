@@ -14,6 +14,8 @@ Base: DeclarativeMeta = declarative_base()
 class User(SQLAlchemyBaseUserTableUUID, Base):
     pass
 
+# TODO: consider using the database to store data related to the users' votes, instead of just text files
+
 
 class Image(Base):
     """Table for Images

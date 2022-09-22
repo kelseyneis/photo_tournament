@@ -42,7 +42,7 @@ app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-
+# Start routers for fastapi-users
 app.include_router(
     fastapi_users.get_auth_router(auth_backend), prefix="/auth/jwt", tags=["auth"]
 )
@@ -71,6 +71,9 @@ app.include_router(
 @app.get("/authenticated-route")
 async def authenticated_route(user: User = Depends(current_active_user)):
     return {"message": f"Hello {user.email}!"}
+# End routers for fastapi-users
+
+# Create user tables and get the list of images on startup
 
 
 @app.on_event("startup")
@@ -128,20 +131,27 @@ def get_img_id(url):
     x = re.search(r"\d+", url)
     return (x.group())
 
+# TODO: get user and read user file to determine next pair of images to select for each round, following procedure implemented in tourney.py
+
 
 @app.get("/vote")
 def vote_page(request: Request):
+    # get image urls (pulled from API at app startup)
     images = open("images.txt", "r").read()
     images_arr = images.split("\n")
+    # base url is url without image id
     base_url = re.sub("\d+.*", "", images_arr[0])
+    # get image id from url
     img1 = get_img_id(images_arr[0])
     img2 = get_img_id(images_arr[1])
     return templates.TemplateResponse("vote.html", {"request": request, "img1": img1, "img2": img2, "base_url": base_url})
 
 
+# called when user clicks on one of the images to vote for it
 @app.get("/vote/{img}")
 # , user: User = Depends(current_active_user)): (Getting Unauthorized response, so proceeding without users)
 async def vote(img: str, request: Request):
+    # would include user as a parameter to record their vote
     img1, img2 = Vote().vote(img)
     images = open("images.txt", "r").read()
     images_arr = images.split("\n")
